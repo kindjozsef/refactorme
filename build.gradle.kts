@@ -3,7 +3,6 @@ import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
 plugins {
     java
     application
-    alias(libs.plugins.shadow)
     alias(libs.plugins.spotless)
     alias(libs.plugins.version.catalog.update)
 }
@@ -13,9 +12,6 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.picocli)
-    annotationProcessor(libs.picocli.codegen)
-
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.platform.launcher)
 }
@@ -36,23 +32,7 @@ java {
 }
 
 application {
-    mainClass = "ro.kindjozsef.App"
-}
-
-tasks.shadowJar {
-    archiveBaseName = "new-cli-app"
-    archiveClassifier = ""
-    mergeServiceFiles()
-    manifest {
-        attributes(
-            "Implementation-Title" to "new-cli-app",
-            "Implementation-Version" to project.version,
-        )
-    }
-}
-
-tasks.jar {
-    archiveClassifier = "thin"
+    mainClass = "ro.msg4banking.App"
 }
 
 spotless {
